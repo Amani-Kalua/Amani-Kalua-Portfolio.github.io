@@ -48,6 +48,10 @@
       background: rgba(8,11,18,0.85);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
+      transition: background 0.3s;
+    }
+    html.light nav {
+      background: rgba(244,246,251,0.92);
     }
     .nav-logo {
       font-size: 1.1rem; font-weight: 700; letter-spacing: 0.08em;
@@ -206,9 +210,9 @@
       border-radius: 2rem; font-size: 0.82rem;
     }
     .cert-tag {
-      background: rgba(108,99,255,0.1);
-      border: 1px solid rgba(108,99,255,0.25);
-      color: #a5b4fc;
+      background: rgba(0,200,255,0.07);
+      border: 1px solid rgba(0,200,255,0.15);
+      color: var(--text);
       padding: 0.3rem 0.75rem;
       border-radius: 2rem; font-size: 0.82rem;
     }
@@ -324,7 +328,7 @@
 <nav>
   <a class="nav-logo" href="#hero">AK</a>
   <button class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark mode">
-    <span id="themeIcon">☀️</span> <span id="themeLabel">Light</span>
+    <span id="themeIcon">🌙</span> <span id="themeLabel">Dark</span>
   </button>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
@@ -376,7 +380,7 @@
         My work spans digital forensics, machine learning-based intrusion detection, network security, and risk management. I'm passionate about using data and technology to protect people and organizations.
       </p>
       <p>
-        Outside of technical work, I've led large-scale student advocacy efforts as Stakeholder Relations Chair and supported residential communities as a Resident Assistant — roles that sharpened my communication and leadership skills.
+        Outside of technical work, I've led large-scale student advocacy efforts as Stakeholder Relations Chair and supported residential communities as a Resident Assistant, roles that sharpened my communication and leadership skills.
       </p>
     </div>
     <div class="about-stats">
@@ -460,7 +464,7 @@
 
     <div class="project-card">
       <div class="project-type">Analytics Studio · Aug 2025 – Dec 2025</div>
-      <div class="project-title">Network Traffic Analysis — ML</div>
+      <div class="project-title">Network Traffic Analysis: ML</div>
       <div class="project-course">Security Data Analyst</div>
       <ul class="project-bullets">
         <li>Trained and evaluated supervised ML models on corporate network traffic datasets; achieved up to 99% accuracy in classifying attack flows</li>
@@ -539,7 +543,7 @@
   <h2 class="section-title">Get In <span>Touch</span></h2>
   <div class="section-line" style="margin: 0 auto 3rem;"></div>
   <div class="contact-inner fade-in">
-    <p>I'm actively seeking full-time cybersecurity roles. Whether you have a question, an opportunity, or just want to connect — my inbox is open.</p>
+    <p>I'm actively seeking full-time cybersecurity roles. Whether you have a question, an opportunity, or just want to connect, my inbox is open.</p>
     <div class="contact-links">
       <a class="contact-link" href="mailto:amani.kalua0123@gmail.com">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -594,7 +598,7 @@
   }
 
   // Load saved preference
-  setTheme(localStorage.getItem('theme') || 'dark');
+  setTheme(localStorage.getItem('theme') || 'light');
 
   toggle.addEventListener('click', () => {
     const isLight = document.documentElement.classList.contains('light');
