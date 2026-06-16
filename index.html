@@ -19,6 +19,18 @@
       --glow:      rgba(0,200,255,0.18);
     }
 
+    html.light {
+      --bg:        #f4f6fb;
+      --bg2:       #ffffff;
+      --bg3:       #e8edf5;
+      --accent:    #0094cc;
+      --accent2:   #5046e4;
+      --text:      #0f172a;
+      --muted:     #4b5675;
+      --border:    rgba(0,148,204,0.18);
+      --glow:      rgba(0,148,204,0.12);
+    }
+
     html { scroll-behavior: smooth; }
 
     body {
@@ -47,6 +59,14 @@
       letter-spacing: 0.04em; transition: color 0.2s;
     }
     .nav-links a:hover { color: var(--accent); }
+    .theme-toggle {
+      background: var(--bg2); border: 1px solid var(--border);
+      color: var(--muted); cursor: pointer;
+      border-radius: 2rem; padding: 0.4rem 0.9rem;
+      font-size: 0.85rem; display: flex; align-items: center; gap: 0.4rem;
+      transition: all 0.2s;
+    }
+    .theme-toggle:hover { border-color: var(--accent); color: var(--accent); }
 
     /* ── SECTIONS ── */
     section { padding: 6rem 5%; max-width: 1100px; margin: 0 auto; }
@@ -303,6 +323,9 @@
 <!-- NAV -->
 <nav>
   <a class="nav-logo" href="#hero">AK</a>
+  <button class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark mode">
+    <span id="themeIcon">☀️</span> <span id="themeLabel">Light</span>
+  </button>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#skills">Skills</a></li>
@@ -551,6 +574,32 @@
 </footer>
 
 <script>
+  // Dark/light mode toggle
+  const toggle = document.getElementById('themeToggle');
+  const icon = document.getElementById('themeIcon');
+  const label = document.getElementById('themeLabel');
+
+  function setTheme(mode) {
+    if (mode === 'light') {
+      document.documentElement.classList.add('light');
+      icon.textContent = '🌙';
+      label.textContent = 'Dark';
+    } else {
+      document.documentElement.classList.remove('light');
+      icon.textContent = '☀️';
+      label.textContent = 'Light';
+    }
+    localStorage.setItem('theme', mode);
+  }
+
+  // Load saved preference
+  setTheme(localStorage.getItem('theme') || 'dark');
+
+  toggle.addEventListener('click', () => {
+    const isLight = document.documentElement.classList.contains('light');
+    setTheme(isLight ? 'dark' : 'light');
+  });
+
   // Fade-in on scroll
   const observer = new IntersectionObserver(
     entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
